@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="utf-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="itcast" uri="http://itcast.cn/common/"%>
@@ -210,10 +210,10 @@
 			<!-- /.row -->
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-inline" action="${pageContext.request.contextPath }/customer/list.action" method="get">
+					<form class="form-inline" action="${pageContext.request.contextPath }/cus/list.action" method="get">
 						<div class="form-group">
 							<label for="customerName">客户名称</label> 
-							<input type="text" class="form-control" id="customerName" value="${custName }" name="custName">
+							<input type="text" class="form-control" id="customerName" value="${custName}" name="custName">
 						</div>
 						<div class="form-group">
 							<label for="customerFrom">客户来源</label> 
@@ -283,7 +283,7 @@
 							</tbody>
 						</table>
 						<div class="col-md-12 text-right">
-							<itcast:page url="${pageContext.request.contextPath }/customer/list.action" />
+							<itcast:page url="${pageContext.request.contextPath }/cus/list.action" />
 						</div>
 						<!-- /.panel-body -->
 					</div>
@@ -409,7 +409,7 @@
 		function editCustomer(id) {
 			$.ajax({
 				type:"get",
-				url:"<%=basePath%>customer/edit.action",
+				url:"<%=basePath%>cus/detail.action",
 				data:{"id":id},
 				success:function(data) {
 					$("#edit_cust_id").val(data.cust_id);
@@ -427,7 +427,7 @@
 			});
 		}
 		function updateCustomer() {
-			$.post("<%=basePath%>customer/update.action",$("#edit_customer_form").serialize(),function(data){
+			$.post("<%=basePath%>cus/update.action",$("#edit_customer_form").serialize(),function(data){
 				alert("客户信息更新成功！");
 				window.location.reload();
 			});
@@ -435,7 +435,7 @@
 		
 		function deleteCustomer(id) {
 			if(confirm('确实要删除该客户吗?')) {
-				$.post("<%=basePath%>customer/delete.action",{"id":id},function(data){
+				$.post("<%=basePath%>cus/delete.action",{"id":id},function(data){
 					alert("客户删除更新成功！");
 					window.location.reload();
 				});
